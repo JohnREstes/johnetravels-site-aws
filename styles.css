@@ -1,0 +1,589 @@
+:root {
+    --header-background-color: #848181; /* Default header background color */
+    --header-text-color: #fff; /* Default header text color */
+    --header-button-background: #fff; /* Default button background color */
+    --header-button-text: #848181; /* Default button text color */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.bordered-letters {
+    color: var(--header-text-color); /* Change this to the desired text color */
+    /* text-shadow: 
+      -1px -1px 0 black,  
+       1px -1px 0 black,
+      -1px  1px 0 black,
+       1px  1px 0 black; */
+  }
+.slide h2{
+    font-size: 3em;
+}
+.slide p{
+    font-size: 2em;
+}
+nav{
+    display: flex;
+}
+header {
+    color: var(--header-text-color); /* Use variable for text color */
+    background-color: var(--header-background-color); /* Use variable for background color */
+    padding: 10px 0;
+    text-align: right;
+}
+.header-menu{
+    position: relative;
+}
+.header-menu ul {
+    width: 100%;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-menu ul li {
+    margin-right: 10px;
+}
+.bordered-letters{
+    background-color: var(--header-background-color);
+    margin: 0;
+    padding: 10px;
+}
+
+.header-menu ul li a {
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    height: 24px; /* Adjust height as needed */
+    padding: 8px 10px;
+    text-decoration: none;
+    color: var(--header-text-color);
+    border: 1px solid var(--header-text-color);
+    background-color: var(--header-background-color);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.header-menu ul li a:hover {
+    background-color: var(--header-button-background);
+    color: var(--header-button-text);
+    transform: scale(1.2); /* Scale up to 120% on hover */
+}
+
+.header-menu ul li a img {
+    height: 24px; /* Adjust height as needed */
+    width: auto;
+    vertical-align: middle; /* Align SVGs vertically with text */
+}
+.off-screen-menu{
+    background-color: var(--header-background-color);
+    height: 100vh;
+    width: 100%;
+    max-width: 115px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: -115px;
+    display: flex;
+    flex-direction: column !important;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    transition: .3s ease;
+}
+.ham-menu-align{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ham-menu-align li a {
+    width: 60px;
+}
+.off-screen-menu.active {
+    right: -10px;
+}
+.ham-menu {
+    display: none;
+    align-items: flex-end;
+    z-index: 10;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    transition: .3s ease;
+}
+.ham-menu span{
+    height: 5px;
+    width: 50px;
+    background-color: var(--header-text-color);
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+}
+.ham-menu span:nth-child(1){
+    top: 25%;
+}
+.ham-menu span:nth-child(3){
+    top: 75%;
+}
+.ham-menu.active {
+    margin-right: 0px;
+}
+.ham-menu.active span:nth-child(1){
+    margin-right: -25px;
+    top: 60%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.ham-menu.active span:nth-child(2){
+    opacity: 0;
+}
+.ham-menu.active span:nth-child(3){
+    margin-right: -25px;
+    top: 50%;
+    transform: translate(-50%, 50%) rotate(-45deg);
+}
+
+.social-link svg {
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    fill: var(--header-button-background); /* Default color */
+}
+
+.social-link:hover svg {
+    fill: var(--header-button-text); /* Change color on hover */
+    transform: scale(1.2); /* Scale up to 120% on hover */
+}
+
+.slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    vertical-align: middle;
+}
+.contact-slider{
+    max-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.deals {
+    padding: 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.deals-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.deal-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    padding: 10px;
+    width: 300px;
+    flex: 0 0 auto;
+}
+
+.deal-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.price-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    transform: rotate(45deg) translate(50%, 150%);
+    transform-origin: top right;
+}
+
+.about, .contact {
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+}
+
+footer {
+    background: var(--header-background-color);
+    color: var(--header-text-color);
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer ul {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    list-style-type: none;
+    gap: 10px;
+}
+
+footer .social img {
+    width: 24px;
+    height: 24px;
+    margin: 0 5px;
+}
+footer ul li a {
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    height: 24px; /* Adjust height as needed */
+    padding: 3px 3px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: var(--header-text-color);
+    background-color: var(--header-background-color);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer ul li a:hover {
+    background-color: var(--header-button-background);
+    color: var(--header-button-text);
+    transform: scale(1.2); /* Scale up to 120% on hover */
+}
+
+footer ul li a img {
+    height: 24px; /* Adjust height as needed */
+    width: auto;
+    vertical-align: middle; /* Align SVGs vertically with text */
+}
+
+.contact form {
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for desktop */
+    gap: 20px;
+}
+
+.contact label {
+    grid-column: span 2;
+    font-weight: bold;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact input[type="tel"],
+.contact input[type="number"],
+.contact textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contact textarea {
+    grid-column: span 2;
+    resize: vertical;
+}
+
+.contact button {
+    grid-column: span 2;
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background: #555;
+}
+
+.blog {
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.blog h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.blog-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.blog-post {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 300px;
+    flex: 0 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-post h3 {
+    margin: 10px 0;
+}
+
+.blog-post p {
+    color: #666;
+}
+
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#blog-post-list {
+    max-width: 300px;
+    height: calc(100vh - 100px); /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-item {
+    margin-bottom: 20px;
+}
+
+.post-item h3 {
+    margin: 0;
+}
+
+.blog-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.blog-layout .main-post {
+    flex: 2 1 60%;
+}
+
+.blog-layout .post-list {
+    flex: 1 1 30%;
+}
+
+.blog-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.blog-navigation a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.blog-navigation a:hover {
+    text-decoration: underline;
+}
+#blog-img-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#blog-img-div img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.about{
+    position: relative;
+    background-image: url(/images/IMG_1702.jpg);
+}
+.contact{
+    position: relative;
+    background-image: url(/images/IMG_1702.jpg);
+}
+
+.about-content {
+    background-color: #ddd;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.about-contact-info {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-left: 4px solid #0056b3;
+}
+.footer-social{
+    transform: translateX(-32px);
+}
+.footer-link {
+    text-decoration: underline;
+    color: inherit; /* Keeps the text color the same, even after being clicked */
+    margin-left: 10px; /* Adds a little spacing before the links */
+}
+
+.footer-link:visited {
+    color: inherit; /* Ensures the color doesn't change after the link is clicked */
+}
+.about-content li{
+    list-style-type: none;
+    text-decoration: none;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .slide h2{
+        font-size: 1.7em;
+    }
+    .slide p{
+        font-size: .8em;
+    }
+    .slides {
+        flex-direction: column;
+    }
+    .deals-container {
+        flex-direction: column;
+    }
+    .deal-card {
+        width: 95%;
+        margin-bottom: 10px;
+    }
+    .contact form {
+        grid-template-columns: 1fr; /* One column for mobile */
+    }
+
+    .contact label,
+    .contact input[type="text"],
+    .contact input[type="email"],
+    .contact input[type="tel"],
+    .contact textarea,
+    .contact button {
+        grid-column: span 1; /* Span 1 column on mobile */
+    }
+}
+@media (max-width: 600px) {
+    .header-menu{
+        display: none;
+    }
+    .ham-menu {
+        display: flex;
+    }
+    .full-menu li{
+        display: none;
+    }
+    .blog-layout {
+        flex-direction: column;
+    }
+    .blog-layout .main-post,
+    .blog-layout .post-list {
+        flex: 1 1 100%;
+    }
+    .blog-post, .main-post{
+        width: 100%;
+    }
+    .main-post img{
+        width: 100%;
+    }
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

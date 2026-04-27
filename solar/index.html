@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/solar/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/solar/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/solar/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/solar/favicon_io/site.webmanifest">
+    <script src="./script.js" defer></script>
+    <script src="https://kit.fontawesome.com/f4c4519de4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./bar.css">
+    <link rel="stylesheet" href="./modal.css">
+    <title>Home Solar</title>
+</head>
+<body>
+    <div class="loadingGraphic" id="loadingGraphic">
+        <img src="./images/loading.gif" alt="Loading Graphic" id="loading">
+    </div>
+    <div class="loginContainer" id="loginContainer">
+        <div class="loginForm" id="loginForm">
+            <h1>Login</h1>
+            <form id="loginForm">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required><br>
+          
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required><br>
+            <div class="buttonCenter">
+                <button id='loginButton' type="button" onclick="login()">Login</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <header>
+        <div class="header-container">
+            <span id="cond_txt">Condition</span>
+            <span id="hum">Humidity</span>
+            <span id="tmp">Temperature</span>
+            <span id="timeStamp">Time</span>
+            <span>LP Tank
+                <strong id="lpTankLevel">--%</strong>
+            </span>
+        </div>
+    </header>
+    <div class="button_div">
+        <div class="button_space" id="button_div_left">
+            <button class="toggle-button" id="toggle-all-details">Show Details</button>
+        </div>
+        <div class="button_space">
+            <button class="toggle-button" id="pastDetails">Show Solar Data</button>
+        </div>
+        <div class="button_space" id="button_div_right">
+            <i class="fa-regular fa-moon" id="toggle-dark-mode"></i>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-output">
+
+            <div class="box ac-input">
+                <p><i class="fa-solid fa-plug"></i>AC Input</p>
+                <p class="inputPower">Total: <span id="inputPowerTotal"></span></p>
+                <p class="inputPower">Casa 1: <span id="Casa1input"></span></p>
+                <p class="inputPower">Casa 2: <span id="Casa2input"></span></p>
+                <p class="inputPower">Yolanda: <span id="Yolandainput"></span></p>
+            </div>
+            <div class="box status">
+                <i class="fa-regular fa-sun"></i>
+                <p id="powerToday">Power Today:<br><span id="VRMtoday"></span></p>
+                <p>Power Yesterday:<br><span id="VRMyesterday"></span></p>
+
+                <p>Pergola Total: <span id="VRMyesterdayPergola"></span></p>
+                <p >Tower Total: <span id="VRMyesterdayTower"></span></p>
+            </div>
+            <div class="box ac-loads">
+                <p><i class="fa-solid fa-upload"></i>AC Loads</p>
+                <p class="loads">Total: <span id="loadsTotal"></span></p>
+                <p class="loads">Casa 1: <span id="Casa1load"></span></p>
+                <p class="loads">Casa 2: <span id="Casa2load"></span></p>
+                <p class="loads">Yolanda: <span id="Yolandaload"></span></p>
+            </div>
+            <div class="box charging">
+                <p id="charging_discharging">- - -</p>
+                <p class="percentage">Battery: <span id="VRMstate"></span></p>
+                <p>Wattage: <span id="VRMBatteryPower"></span></p>
+                <p>Voltage: <span id="VRMvoltage"></span></p>
+                <p>Current: <span id="VRMcurrent"></span></p>
+                <p>Time Left: <span id="TimeToGo"></span></p>
+            </div>
+
+            <div class="container-for-lines">
+                <div class="left-div bar" style="rotate: 90deg;">
+                    <span></span>
+                </div>
+                <div class="left-div bar highLeft" style="rotate: 90deg;">
+                    <span></span>
+                </div>
+                <div class="up-div bar" style="rotate: 180deg;">
+                    <span></span>
+                </div>
+                <div class="right-div bar" style="rotate: 270deg;">
+                    <span></span>
+                </div>
+                <div class="right-div bar highRight" style="rotate: 270deg;">
+                    <span></span>
+                </div>
+              </div>
+
+            <div class="box pv-charger">
+                <p id="pvCharger"><i class="fa-solid fa-solar-panel"></i>PV Charger</p>
+                <p class="power">Total: <span id="PVTotal"></span></p>
+                <p class="power">Pergola: <span id="VRMpowerPergola"></span></p>
+                <p class="power">Tower: <span id="VRMpowerTower"></span></p>
+                <p class="power">Casa 1: <span id="Casa1power"></span></p>
+                <p class="power">Casa 2: <span id="Casa2power"></span></p>
+                <p class="power">Yolanda : <span id="Yolandapower"></span></p>
+            </div>
+        </div>
+    </main>    
+
+    <!-- <iframe width="100%" height="800" src="https://vrm.victronenergy.com/installation/462082/embed/37daf632"></iframe> -->
+    <!-- Modal Structure -->
+    <div id="solarDataModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2 id="modal-text">Solar Data Breakdown</h2>
+            <div id="modalBody"></div> <!-- Cards will be added here dynamically -->
+        </div>
+        <div id="modal-footer">
+            <button class="toggle-button" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</body>
+
+</html>

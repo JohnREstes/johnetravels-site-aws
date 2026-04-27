@@ -1,0 +1,22 @@
+{
+    "deals": [
+        {
+            "image": "images/relaxing-pool-view-ocean.jpg",
+            "title": "Riviera Maya <br>2-Adults - 6 Nights, Non-stop Airfare (PHL), transfers, Adult-Only, All-Inclusive, Taxes, and Insurance",
+            "price": "2,495",
+            "description": "This adults-only (18+) paradise is a favorite spot! Located on the beachfront in Riviera Maya, this beautiful resort has recently undergone an extensive renovation. Surrounded by a vast panorama of enchanting tropical landscape, you'll find it difficult to remain unmoved by its stunning natural beauty."
+        },
+        {
+            "image": "images/hotel-riu-latino.jpg",
+            "title": "Cancun Getaway <br>2-Adults - 6 Nights, Non-stop Airfare (PHL), transfers, Adult-Only, All-Inclusive, Taxes, and Insurance",
+            "price": "2,615",
+            "description": "Located along the sparkling shores of Costa Mujeres. enjoy a world-class vacation experience complete with next-level amenities, accommodations, and service. Relax poolside with a drink in hand, then head down to the beach for an array of activities, water sports, and cabana service."
+        },
+        {
+            "image": "images/hotel-marina-el-cid-spa.jpeg",
+            "title": "Puerto Morelos <br>Family of 4 - 6 Nights, Non-stop Airfare (PHL), transfers, All-Inclusive, Taxes, and Insurance",
+            "price": "3,450",
+            "description": "An unforgettable vacations for families, spa enthusiasts and active travelers seeking a little all-inclusive luxury. Designed for comfort and convenience, spacious all-suite accommodations offer 24-hour all-inclusive room service and contemporary décor, while inviting restaurants and bars."
+        }
+    ]
+}

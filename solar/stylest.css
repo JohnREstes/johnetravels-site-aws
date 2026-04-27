@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100dvh;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+
+.container-output {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+}
+
+.box {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.status {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.charging {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.pv-charger {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.line{
+    width: 150px;
+    height: 10px;
+    border: 1px black solid;
+    overflow: hidden;
+}
+.line img{
+    width: 200px;
+}
+.container-lines{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.statusLine{
+    rotate: 90deg;
+    transform: translateX(-50%);
+    background-color: red;
+}
+.chargingLine{
+    transform: translate(50%, -50%);
+    background-color: green;
+}
+.pv-chargerLine{
+    transform: translate(-50%, -150%);
+    background-color: blue;
+}
+#animatedImage {
+    position: relative;
+    animation: move 3s linear infinite running;
+}
+
+@keyframes move {
+    0% { top: 0; }
+    25% { top: -5px; }
+    50% { top: -10px; } /* Move up by default */
+    75% { top: -15px; } /* Move up by default */    
+    100% { top: 0; }
+}

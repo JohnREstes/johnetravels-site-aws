@@ -1,0 +1,191 @@
+
+/* 
+Set the container for the bar
+*/
+:root{
+    --main-color: rgb(76, 76, 76);
+    --secondary-color: rgb(138, 138, 138);
+    --background-color: rgb(211, 211, 211);
+}
+.bar {
+	height:5px;
+	width:200px;
+	/* padding:00px;
+	margin:200px auto 0; */
+
+}
+
+/* 
+This is the actual bar with stripes
+*/	
+.bar span {
+	display:inline-block;
+	height:100%;
+	width:100%;
+	border:1px solid var(--secondary-color);
+	border-bottom-color: var(--main-color);
+	background-color:rgb(211, 211, 211);
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+	background-image:
+		-webkit-linear-gradient(
+		-45deg,
+		var(--main-color) 25%,
+		transparent 25%,
+		transparent 50%,
+		var(--main-color) 50%,
+		var(--main-color) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		-moz-linear-gradient(
+		-45deg,
+		var(--main-color) 25%,
+		transparent 25%,
+		transparent 50%,
+		var(--main-color) 50%,
+		var(--main-color) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		-ms-linear-gradient(
+		-45deg,
+		var(--main-color) 25%,
+		transparent 25%,
+		transparent 50%,
+		var(--main-color) 50%,
+		var(--main-color) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		linear-gradient(
+		-45deg,
+		var(--main-color) 25%,
+		transparent 25%,
+		transparent 50%,
+		var(--main-color) 50%,
+		var(--main-color) 75%,
+		transparent 75%,
+		transparent
+	);
+	-webkit-background-size:50px 50px;
+	-moz-background-size:50px 50px;
+	-ms-background-size:50px 50px;
+	background-size:50px 50px;
+	-webkit-animation:move 2s linear infinite;
+	-moz-animation:move 2s linear infinite;
+	-ms-animation:move 2s linear infinite;
+	animation:move 2s linear infinite;
+	overflow: hidden;
+}
+
+.left-div span{
+    animation: none;
+}
+
+.right-div span{
+    animation: none;
+}
+
+/*
+Animate the stripes
+*/	
+@-webkit-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@-moz-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@-ms-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}
+@keyframes moveb{
+    0% {
+        background-position: 50px 50px;
+    }
+    100% {
+        background-position: 0px 0px;
+    }
+  }
+
+
+.container-for-lines{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    transform-origin: center;
+    z-index: -10;
+  }
+  
+  .left-div {
+    transform-origin: center;
+    position: absolute;
+    top: 0;
+    left: -65px;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 150px;
+    background-color: #0f0;
+  }
+  
+  .up-div {
+    transform-origin: center;
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    width: 5px;
+    height: 150px;
+    background-color: #00f;
+  }
+  
+  .right-div {
+    transform-origin: center;
+    position: absolute;
+    top: -5px;
+    right: -90px;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 150px;
+    background-color: #ff0;
+  }
+
+@media (max-width: 600px) {
+    .right-div {
+        right: -98px;;
+      }
+    
+}
+@media (max-width: 390px) {
+    .right-div {
+        right: -98px;;
+      }
+    
+}
