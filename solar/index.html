@@ -20,19 +20,27 @@
         <img src="./images/loading.gif" alt="Loading Graphic" id="loading">
     </div>
     <div class="loginContainer" id="loginContainer">
-        <div class="loginForm" id="loginForm">
-            <h1>Login</h1>
-            <form id="loginForm">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username" required><br>
-          
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required><br>
-            <div class="buttonCenter">
-                <button id='loginButton' type="button" onclick="login()">Login</button>
-            </div>
-            </form>
+    <div class="loginForm" id="loginBox">
+        <h1>Login</h1>
+
+        <form id="loginFormElement">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <div class="buttonCenter">
+            <button id="sendCodeButton" type="button" onclick="sendLoginCode()">Send Code</button>
         </div>
+
+        <div id="codeSection" style="display:none;">
+            <label for="loginCode">Code:</label>
+            <input type="text" id="loginCode" name="loginCode" inputmode="numeric" maxlength="6" required><br>
+
+            <div class="buttonCenter">
+            <button id="verifyCodeButton" type="button" onclick="verifyLoginCode()">Login</button>
+            </div>
+        </div>
+        </form>
+    </div>
     </div>
     <header>
         <div class="header-container">

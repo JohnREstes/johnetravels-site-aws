@@ -484,67 +484,77 @@ const settingsLocalP = document.getElementById('settingLocal');
 var savedSettings = JSON.parse(localStorage.getItem('settings'));
 var hostName = `${HOST}/`
 
-async function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+async function sendLoginCode() {
+  const email = document.getElementById('email').value;
 
-    const response = await fetch(`${HOST}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
+  const response = await fetch(`${HOST}/auth/send-code`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email })
+  });
 
-    if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-        localStorage.setItem('token', token);
-        await handleToken();
-      } else {
-        alert('Invalid credentials. Please try again.');
-      }
-      
+  if (response.ok) {
+    localStorage.setItem('loginEmail', email);
+    document.getElementById('codeSection').style.display = 'block';
+  } else {
+    alert('Unable to send login code.');
   }
+}
 
-  async function handleToken() {
-    // Retrieve token from localStorage
-    storedToken = localStorage.getItem('token');
-    // Check if the token is present
-    if (storedToken) {
-      try {
-        // Make a request with the token in the headers
-        const response = await fetch(`${HOST}/protected-route`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storedToken}`,
-          },
-        });
-  
-        if (response.ok) {
-          if(initalLoad){
-            await cachedDataCall();
-            initalLoad = false
-            loadingGraphic.classList.add('none');
-          }
-          const data = await response.json();
-          loginContainer.style.display = 'none'
-        } else {
-          console.error('Error:', response.statusText);
-          loginContainer.style.display = 'flex'
+async function verifyLoginCode() {
+  const email = localStorage.getItem('loginEmail');
+  const code = document.getElementById('loginCode').value;
+
+  const response = await fetch(`${HOST}/auth/verify-code`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, code })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+    await handleToken();
+  } else {
+    alert('Invalid or expired code.');
+  }
+}
+
+async function handleToken() {
+  storedToken = localStorage.getItem('token');
+
+  if (storedToken) {
+    try {
+      const response = await fetch(`${HOST}/auth/me`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${storedToken}`,
+        },
+      });
+
+      if (response.ok) {
+        if (initalLoad) {
+          await cachedDataCall();
+          initalLoad = false;
+          loadingGraphic.classList.add('none');
         }
-      } catch (error) {
-        console.error('Error:', error.message);
-        loginContainer.style.display = 'flex'
-      }
-    } else {
-      console.log('Token not found in localStorage');
-      loginContainer.style.display = 'flex'
-    }
-  }
 
-handleToken()
+        loginContainer.style.display = 'none';
+      } else {
+        console.error('Token invalid:', response.statusText);
+        loginContainer.style.display = 'flex';
+      }
+    } catch (error) {
+      console.error('Token check error:', error.message);
+      loginContainer.style.display = 'flex';
+    }
+  } else {
+    loginContainer.style.display = 'flex';
+  }
+}
+
+handleToken();
 
 // Function to calculate and update PVTotal
 function updatePVTotal() {
