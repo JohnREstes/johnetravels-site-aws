@@ -788,6 +788,87 @@ function closeModal() {
      }
 }
 
+let latestHAData = {};
+
+function formatHAData(data) {
+  if (!data) return;
+
+  latestHAData = data;
+
+  const lpSensor = data["sensor.lp_tank_level_percentage"];
+  const lpElm = document.getElementById('lpTankLevel');
+
+  if (lpSensor && lpElm) {
+    const value = parseFloat(lpSensor.state);
+    if (!Number.isNaN(value)) {
+      lpElm.innerText = `${value.toFixed(1)}%`;
+    }
+  }
+}
+
+function formatSensorValue(sensor, suffix = '') {
+  if (!sensor || !sensor.state || ['unknown', 'unavailable', 'none', ''].includes(sensor.state)) {
+    return 'Unavailable';
+  }
+
+  const value = parseFloat(sensor.state);
+  if (Number.isNaN(value)) return sensor.state;
+
+  return `${value.toFixed(1)}${suffix}`;
+}
+
+function buildTempModal() {
+  const sensors = [
+    { label: 'Bedroom', temp: 'sensor.bedroom_temperature' },
+    { label: 'Den', temp: 'sensor.den_temperature' },
+    { label: 'Fridge', temp: 'sensor.fridge_temperature' },
+    { label: 'Freezer', temp: 'sensor.freezer_temperature' }
+  ];
+
+  const body = document.getElementById('tempModalBody');
+  body.innerHTML = '';
+
+  sensors.forEach(sensor => {
+    const tempValue = formatSensorValue(latestHAData[sensor.temp], '°');
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3>${sensor.label}</h3>
+      <p>Temperature: ${tempValue}</p>
+    `;
+
+    body.appendChild(card);
+  });
+
+  const modal = document.getElementById('tempDataModal');
+  modal.style.display = 'flex';
+  modal.classList.add('fade-in');
+}
+
+function closeTempModal() {
+  const modal = document.getElementById('tempDataModal');
+  modal.classList.add('fade-out');
+
+  setTimeout(() => {
+    modal.style.display = 'none';
+    modal.classList.remove('fade-out');
+  }, 1000);
+
+  modal.classList.remove('fade-in');
+}
+
+document.getElementById('tempDetails').addEventListener('click', (e) => {
+  e.preventDefault();
+  buildTempModal();
+});
+
+document.getElementById('tempDataModal').addEventListener('click', function(event) {
+  if (event.target === this) {
+    closeTempModal();
+  }
+});
+
 // Event Listener for opening the modal
 const pastSolarButton = document.getElementById('pastDetails');
 

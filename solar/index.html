@@ -57,9 +57,15 @@
         <div class="button_space" id="button_div_left">
             <button class="toggle-button" id="toggle-all-details">Show Details</button>
         </div>
+
         <div class="button_space">
             <button class="toggle-button" id="pastDetails">Show Solar Data</button>
         </div>
+
+        <div class="button_space">
+            <button class="toggle-button" id="tempDetails">Show Temps</button>
+        </div>
+
         <div class="button_space" id="button_div_right">
             <i class="fa-regular fa-moon" id="toggle-dark-mode"></i>
         </div>
@@ -138,6 +144,16 @@
         </div>
         <div id="modal-footer">
             <button class="toggle-button" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="tempDataModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Temperature Sensors</h2>
+            <div id="tempModalBody"></div>
+        </div>
+        <div id="modal-footer">
+            <button class="toggle-button" onclick="closeTempModal()">Close</button>
         </div>
     </div>
 </body>
