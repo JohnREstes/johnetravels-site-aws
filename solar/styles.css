@@ -224,6 +224,26 @@ input{
     
 }
 
+.button_div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.button_space {
+    width: auto;
+    min-width: 90px;
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-button {
+    white-space: nowrap;
+}
+
 
 @media (max-width: 600px) {
     .container-output {
@@ -265,5 +285,23 @@ input{
     }
     #charging{
         font-size: .85rem;
+    }
+    .button_div {
+        justify-content: center;
+        gap: 2px;
+    }
+
+    .button_space {
+        min-width: auto;
+    }
+
+    .toggle-button {
+        padding: 6px 8px;
+        margin: 3px;
+        font-size: 0.75rem;
+    }
+
+    #toggle-dark-mode {
+        font-size: 18px;
     }
 }
