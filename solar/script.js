@@ -1,6 +1,7 @@
 const REFRESH_RATE = 15; //seconds
 
-const HOST = 'https://node.johnetravels.com/app1';
+const HOST = 'https://node.johnetravels.com/v2';
+//const HOST = 'http://127.0.0.1:3006';
 const CACHED_DATA_API = `${HOST}/api/cachedData`;
 const VICTRON_API = `${HOST}/api/victron/data`;
 const GROWATT_API = `${HOST}/api/growattData`;
@@ -154,7 +155,7 @@ async function get_Data(url) {
 
 
 async function get_Growatt_Data(url) {
-  var requestOptions = {
+  const requestOptions = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -165,13 +166,22 @@ async function get_Growatt_Data(url) {
 
   try {
     const response = await fetch(url, requestOptions);
-    const result = await response.text();
-    let data = JSON.parse(result); // result is a JSON string
+
+    if (!response.ok) {
+      console.warn('Growatt API unavailable:', response.status);
+      return;
+    }
+
+    const data = await response.json();
+
+    if (!data || !data.yolandaData || !data.casaMJData1 || !data.casaMJData2) {
+      console.warn('Growatt data missing expected fields:', data);
+      return;
+    }
+
     formatGrowattData(data);
-    //return data
   } catch (error) {
-    console.log('error', error);
-    throw error; // Rethrow the error to handle it outside this function if needed
+    console.warn('Growatt fetch error:', error);
   }
 }
 
@@ -368,6 +378,10 @@ function processArray(array) {
 }
 
 async function formatGrowattData(data){
+  if (!data || !data.yolandaData || !data.casaMJData1 || !data.casaMJData2) {
+    console.warn('Skipping Growatt formatting because data is incomplete:', data);
+    return;
+  }
    
     const yolandaPower = document.getElementById('Yolandapower');
     const casa1Power = document.getElementById('Casa1power');
